@@ -1,11 +1,13 @@
-package com.advanced.trace.threadlocal.code;
+package com.advanced.trace.threadlocal;
 
+import com.advanced.trace.threadlocal.code.FieldService;
+import com.advanced.trace.threadlocal.code.ThreadLocalService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
 @Slf4j
-public class FieldServiceTest {
-    private FieldService fieldService = new FieldService();
+public class ThreadLocalServiceTest {
+    private ThreadLocalService service = new ThreadLocalService();
 
     /**
      * 00:44:56.812 [thread-A] INFO com.advanced.trace.threadlocal.code.FieldService - 저장 name = userA -> nameStore=null
@@ -16,9 +18,9 @@ public class FieldServiceTest {
     @Test
     void field(){
         log.info("main start");
-        Thread threadA = new Thread(() -> fieldService.logic("userA"));
+        Thread threadA = new Thread(() -> service.logic("userA"));
         threadA.setName("thread-A");
-        Thread threadB = new Thread(() -> fieldService.logic("userB"));
+        Thread threadB = new Thread(() -> service.logic("userB"));
         threadB.setName("thread-B");
 
         threadA.start();
