@@ -46,4 +46,28 @@ public class TemplateMethodTest {
         AbstractTemplate template2 = new SubClassLogic2();
         template2.execute();
     }
+
+    @Test
+    void templateMethodV2(){
+        AbstractTemplate template1 = new AbstractTemplate() {
+            @Override
+            protected void call() {
+                log.info("비즈니스 로직1 실행");
+            }
+        };
+
+        //클래스 이름1 = class com.advanced.trace.template.TemplateMethodTest$1 -> 자바가 임의로 이름을 붙임 ($1)
+        log.info("클래스 이름1 = {}", template1.getClass());
+        template1.execute();
+
+        AbstractTemplate template2 = new AbstractTemplate() {
+            @Override
+            protected void call() {
+                log.info("비즈니스 로직2 실행");
+            }
+        };
+        //클래스 이름2 = class com.advanced.trace.template.TemplateMethodTest$2 -> 자바가 임의로 이름을 붙임 ($2)
+        log.info("클래스 이름2 = {}", template2.getClass());
+        template2.execute();
+    }
 }
